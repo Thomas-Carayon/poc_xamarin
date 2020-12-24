@@ -1,9 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:converter="clr-namespace:PocDiiageTemplate.Business"
              x:Class="PocDiiageTemplate.Views.SecondPage"
              Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:Converter x:Key="myConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <StackLayout VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand">
         <Label Text="{Binding Description}" />
+        <Entry Text="{Binding Pseudo}"/>
+        <Label Text="{Binding AvailablePseudo}" IsVisible="{Binding Pseudo, Converter={StaticResource myConverter}}" />
+        <Button Command="{Binding buttonClick}" IsVisible="{Binding Pseudo, Converter={StaticResource myConverter}}" Text="AJOUTER"></Button>
     </StackLayout>
 </ContentPage>
